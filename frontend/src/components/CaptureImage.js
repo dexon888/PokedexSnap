@@ -1,6 +1,6 @@
-// frontend/components/CaptureImage.js
 import { useState } from 'react';
 import axios from 'axios';
+import styles from '../styles/CaptureImage.module.css';
 
 const CaptureImage = ({ onImageUpload }) => {
   const [image, setImage] = useState(null);
@@ -17,7 +17,7 @@ const CaptureImage = ({ onImageUpload }) => {
   };
 
   return (
-    <div>
+    <div className={styles.captureImage}>
       <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} />
       {image && <img src={image} alt="Uploaded" width="300" />}
     </div>

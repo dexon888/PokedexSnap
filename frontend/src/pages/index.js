@@ -1,7 +1,7 @@
-// frontend/pages/index.js
 import { useState } from 'react';
 import CaptureImage from '../components/CaptureImage';
 import DisplayResult from '../components/DisplayResult';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [result, setResult] = useState(null);
@@ -20,10 +20,18 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1>Pokedex IRL</h1>
-      <CaptureImage onImageUpload={handleImageUpload} />
-      <DisplayResult result={result} />
+    <div className={styles.pokedex}>
+      <div className={styles.leftPanel}>
+        <div className={styles.camera}></div>
+        <div className={styles.screen}>
+          <CaptureImage onImageUpload={handleImageUpload} />
+        </div>
+      </div>
+      <div className={styles.rightPanel}>
+        <div className={styles.resultScreen}>
+          <DisplayResult result={result} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+/* DisplayResult.module.css */
+.resultDisplay {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+}

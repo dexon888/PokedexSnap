@@ -1,7 +1,6 @@
-// frontend/components/DisplayResult.js
 const DisplayResult = ({ result }) => {
   return (
-    <div>
+    <div className="resultDisplay">
       {result ? (
         <div>
           <h2>Classification Result</h2>
