@@ -1,0 +1,43 @@
+/* Auth.module.css */
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e0000f;
+    color: #fff;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputField {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+.submitButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.switchButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
