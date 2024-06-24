@@ -9,11 +9,24 @@ const CaptureImage = ({ onImageUpload }) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'your_cloudinary_preset'); // Replace with your Cloudinary preset
+    formData.append('upload_preset', 'pokedex_upload');
 
-    const response = await axios.post('https://api.cloudinary.com/v1_1/your_cloudinary_name/image/upload', formData);
-    setImage(response.data.secure_url);
-    onImageUpload(response.data.secure_url);
+    try {
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/drqmh2mqn/upload',
+        formData
+      );
+      setImage(response.data.secure_url);
+      onImageUpload(response.data.secure_url);
+
+      // Save the picture information to the backend
+      await axios.post('http://localhost:5000/api/pictures', {
+        imageUrl: response.data.secure_url,
+        result: "example result" // Replace with actual result if available
+      });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (

@@ -1,99 +1,60 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import CaptureImage from '../components/CaptureImage';
-import DisplayResult from '../components/DisplayResult';
-import PreviousPictures from '../components/PreviousPictures';
-import Login from '../components/Login';
-import Register from '../components/Register';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
-  const [result, setResult] = useState(null);
-  const [previousPictures, setPreviousPictures] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
+export default function Home({ onLogout }) {
+  const [pictures, setPictures] = useState([]);
 
   useEffect(() => {
-    // Fetch previous pictures from the database
     const fetchPreviousPictures = async () => {
-      const response = await fetch('/api/pictures');
-      const data = await response.json();
-      setPreviousPictures(data.pictures);
+      try {
+        const response = await axios.get('http://localhost:5000/api/pictures');
+        setPictures(response.data);
+      } catch (error) {
+        console.error("Error fetching pictures:", error);
+      }
     };
 
     fetchPreviousPictures();
   }, []);
 
   const handleImageUpload = async (imageUrl) => {
-    const response = await fetch('/api/classify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ imageUrl }),
-    });
+    setPictures([...pictures, { imageUrl, result: "example result" }]);
 
-    const data = await response.json();
-    setResult(data.result);
-
-    // Save the picture and result to the database
-    await fetch('/api/savePicture', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ imageUrl, result: data.result }),
-    });
-
-    // Update previous pictures list
-    setPreviousPictures((prev) => [...prev, { imageUrl, result: data.result }]);
-  };
-
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
-  const handleRegister = () => {
-    setIsAuthenticated(true);
-  };
-
-  const switchToRegister = () => {
-    setIsRegistering(true);
-  };
-
-  const switchToLogin = () => {
-    setIsRegistering(false);
+    // Save the picture information to the backend
+    try {
+      await axios.post('http://localhost:5000/api/pictures', {
+        imageUrl: imageUrl,
+        result: "example result" // Replace with actual result if available
+      });
+    } catch (error) {
+      console.error("Error saving picture to backend:", error);
+    }
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    setIsRegistering(false);
-    setResult(null);
+    // Clear authentication tokens or any other logout logic
+    localStorage.removeItem('authToken');
+    onLogout();
   };
-
-  if (!isAuthenticated) {
-    return isRegistering ? (
-      <Register onRegister={handleRegister} switchToLogin={switchToLogin} />
-    ) : (
-      <Login onLogin={handleLogin} switchToRegister={switchToRegister} />
-    );
-  }
 
   return (
     <div className={styles.container}>
-      <section className={styles.captureSection}>
-        <h1 className={styles.heading}>Capture Pokémon</h1>
-        <CaptureImage onImageUpload={handleImageUpload} />
-      </section>
-      {result && (
-        <section className={styles.resultSection}>
-          <DisplayResult result={result} />
-        </section>
-      )}
-      <section className={styles.previousSection}>
-        <h2 className={styles.heading}>Previous Captures</h2>
-        <PreviousPictures pictures={previousPictures} />
-      </section>
-      <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+      <header className={styles.header}>
+        <h1>Upload Image</h1>
+        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+      </header>
+      <CaptureImage onImageUpload={handleImageUpload} />
+      <h2>Previous Pictures</h2>
+      <div className={styles.picturesGrid}>
+        {pictures.map((picture, index) => (
+          <div key={index} className={styles.pictureItem}>
+            <img src={picture.imageUrl} alt="Uploaded" className={styles.pictureImg} />
+            <p>{picture.result}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
