@@ -1,14 +1,10 @@
 const DisplayResult = ({ result }) => {
   return (
     <div className="resultDisplay">
-      {result ? (
-        <div>
-          <h2>Classification Result</h2>
-          <p>{result}</p>
-        </div>
-      ) : (
-        <p>No result yet.</p>
-      )}
+      <h2 className="resultHeading">Classification Result</h2>
+      <img src={result.imageUrl} alt="Classified" className="resultImage" />
+      <p>{result.stats}</p>
+      <p>{result.fact}</p>
     </div>
   );
 };

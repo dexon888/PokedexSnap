@@ -1,0 +1,21 @@
+/* PreviousPictures.module.css */
+.previousPictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.pictureItem {
+    border: 2px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.pictureImage {
+    display: block;
+    margin: 0 auto 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}

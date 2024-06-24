@@ -1,0 +1,20 @@
+/* CaptureImage.module.css */
+.captureImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fileInput {
+    margin-top: 10px;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.uploadedImg {
+    margin-top: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}

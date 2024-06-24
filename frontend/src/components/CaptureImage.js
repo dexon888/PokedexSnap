@@ -18,8 +18,8 @@ const CaptureImage = ({ onImageUpload }) => {
 
   return (
     <div className={styles.captureImage}>
-      <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} />
-      {image && <img src={image} alt="Uploaded" width="300" />}
+      <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} className={styles.fileInput} />
+      {image && <img src={image} alt="Uploaded" className={styles.uploadedImg} />}
     </div>
   );
 };

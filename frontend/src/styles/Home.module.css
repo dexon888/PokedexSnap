@@ -1,73 +1,22 @@
 /* Home.module.css */
-.pokedex {
+.container {
     display: flex;
-    background-color: #e0000f;
-    border: 5px solid #000;
-    border-radius: 15px;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.captureSection,
+.resultSection,
+.previousSection {
+    width: 100%;
     max-width: 800px;
-    height: 90vh;
-    /* Adjusted height to take more vertical space */
-    margin: 20px auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
 }
 
-.leftPanel,
-.rightPanel {
-    flex: 1;
-    padding: 20px;
-    background-color: #ff0000;
-    border: 5px solid #000;
-    border-radius: 10px;
-    margin: 0 10px;
-    position: relative;
-}
-
-.leftPanel {
-    background-color: #ff0000;
-}
-
-.rightPanel {
-    background-color: #ff0000;
-}
-
-.camera {
-    width: 60px;
-    height: 60px;
-    background-color: #00f;
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.screen {
-    background-color: #fff;
-    border: 3px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 100px;
-    height: calc(100% - 120px);
-    /* Adjusted height */
-}
-
-.resultScreen {
-    background-color: #fff;
-    border: 3px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 20px;
-    height: calc(100% - 40px);
-    /* Adjusted height */
-}
-
-.logoutButton {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.heading {
+    text-align: center;
+    color: #333;
 }
