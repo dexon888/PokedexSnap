@@ -15,27 +15,34 @@ const Login = ({ onLogin, switchToRegister }) => {
 
   return (
     <div className={styles.authContainer}>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit} className={styles.authForm}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className={styles.inputField}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className={styles.inputField}
-        />
-        <button type="submit" className={styles.submitButton}>Login</button>
-      </form>
-      <button onClick={switchToRegister} className={styles.switchButton}>Register</button>
+      <div className={styles.pokedex}>
+        <div className={styles.topSection}>
+          <div className={styles.circle}></div>
+        </div>
+        <div className={styles.bottomSection}>
+          <h1 className={styles.heading}>Login</h1>
+          <form onSubmit={handleSubmit} className={styles.authForm}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className={styles.inputField}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className={styles.inputField}
+            />
+            <button type="submit" className={styles.submitButton}>Login</button>
+          </form>
+          <button onClick={switchToRegister} className={styles.switchButton}>Register</button>
+        </div>
+      </div>
     </div>
   );
 };
